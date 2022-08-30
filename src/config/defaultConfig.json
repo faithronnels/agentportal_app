@@ -1,0 +1,38 @@
+{
+  "global": {
+    "locale": "en-US",
+    "dateFormat": "D/M/YYYY",
+    "timeFormat": "HH:mm:ss",
+    "dateTimeFormat": "D-M-YYYY h:mma",
+    "phoneDefaultCountry": "NG"
+  },
+  "Urls": {
+    "base": "http://localhost/agentportal-api",
+    "tradefadaDevelopment": "http://localhost/agentportal-api",
+    "tradefadaProduction": "http://localhost/agentportal-api"
+  },
+  "Routes": {
+    "request": "/request",
+    "profile": "/profile"
+  },
+
+  
+  "ToastType": {
+    "Error": 0,
+    "Success": 1,
+    "Info": 2,
+    "Warning": 4,
+    "Default": 5
+  },
+
+  "CompanyInfo": {
+    "email": "support@merrybet.com",
+    "phone": "+234-8130741625 , +234-8071828618",
+    "twitterpage": "https://twitter.com/merrybetsports",
+    "facebookpage": "https://www.facebook.com/merrybetsports/?ref=bookmarks",
+    "instagrampage": "https://www.instagram.com/merrybetsports_/",
+    "mbsite": "https://www.merrybet.com",
+    "address": "Merrybet Gold Limited, Suites C 107/108, Ikota Shopping Complex, Lekki-Ajah Expressway, Lagos."
+  },
+  "ConcatStr": "/&&809/"
+}

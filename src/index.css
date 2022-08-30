@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #fbfbfb;
+  color: #1d1d1d;
+}
+.gnaqej svg {
+  display: none !important;
+  color: transparent !important;
+}
+/* colors
+##444444-grey
+#0AB942-green
+#FF7204-orange
+#344968-deep blue
+
+*/
