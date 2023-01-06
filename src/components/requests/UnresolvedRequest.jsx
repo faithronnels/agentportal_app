@@ -176,7 +176,7 @@ const UnResolvedRequest = () => {
             Reload Page
           </button>
         </div>
-        {tabledata && (
+        {tabledata ?(
           <div>
             <DataTable
               columns={columns}
@@ -190,7 +190,10 @@ const UnResolvedRequest = () => {
               onChangePage={onPageChange}
               customStyles={customStyles}
               progressComponent={<Spinner />}
-            />
+            />   </div>
+        ) : (
+          <div className="p-4 ">No Records Avalable</div>
+        )}
 
             <div className="relative">
               {showRequestModal && (
@@ -203,8 +206,7 @@ const UnResolvedRequest = () => {
                 </ModalComponent>
               )}
             </div>
-          </div>
-        )}
+        
       </section>
     </Fragment>
   );

@@ -1,7 +1,9 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { useForm, useWatch, useFieldArray } from "react-hook-form";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import axios from "axios";
+import config from "../../config/index";
 import {
   MdNavigateNext,
   MdNavigateBefore,
@@ -24,15 +26,16 @@ const BusinessInfo = ({
     clearErrors,
     setValue,
     setError,
+    setFocus,
     handleSubmit,
     formState: { errors },
   } = useForm({ defaultValues: regForm });
 
   const isAgentExisting = regForm.agentExist;
 
-  const [shopCheck, setShopCheck] = useState("");
+  const [shopCheck, setShopCheck] = useState(false);
 
-  const [userNameCheck, setUserNameCheck] = useState("");
+  const [usernames, setUsernames] = useState([]);
 
   const [pwdVisible, setPwdVisible] = useState(false);
 
@@ -50,83 +53,117 @@ const BusinessInfo = ({
     previousStep(1, 12.5);
   };
 
-  const handleShopCheck = async (shopname) => {
-    const nameCheck1 = shopname.toLowerCase();
-    const nameCheck = nameCheck1.trim();
+  const handleShopCheck = async (e) => {
+    setShopCheck(false);
     clearErrors("existingShopName");
-    if (nameCheck === "") {
-      setShopCheck("");
-    } else {
-      const url1 = `https://merrybet.com/crp-api/rest/crp/api/sportsbook/merrybet/shop/verify/name/${nameCheck}`;
-      const url2 = `https://merrybet.com/crp-api/rest/crp/api/sportsbook/merrybet/customer/verify/login/${nameCheck}`;
-      try {
-        const response1 = await fetch(`${url1}`);
-        const response2 = await fetch(`${url2}`);
-        // const resData = await response.json();
-        const res1 = await response1.json();
-        const res2 = await response2.json();
-        if (res1.data === true || res2.data === true) {
-          setShopCheck("true");
-        } else {
-          setShopCheck("false");
+    const shopname = e.target.value.trim().toLowerCase();
+    if (shopname === "") return;
+    try {
+      const url = `${config.Urls.base}/username/${shopname}`;
+      const response = await axios.get(url, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response && response.data.statusCode === 200) {
+        if (response.data.data === "true") {
+          setShopCheck(true);
+        }
+        if (response.data.data === "false") {
+          setShopCheck(false);
           setError("existingShopName", {
             type: "NonExistingShop",
             message: "Invalid Shopname. Provide a valid Shop name",
           });
           setTimeout(() => {
             setValue(`existingShopName`, "");
-            `existingShopName`.current.focus();
-          }, 3000);
+            setFocus(`existingShopName`);
+          }, 1000);
         }
-      } catch (err) {
-        setShopCheck("false");
       }
+    } catch (err) {
+      setShopCheck(false);
+      setError("existingShopName", {
+        type: "NonExistingShop",
+        message: "Invalid Shopname. Provide a valid Shop name",
+      });
+      setTimeout(() => {
+        setValue(`existingShopName`, "");
+        setFocus(`existingShopName`);
+      }, 1000);
     }
   };
-  const handleNameCheck = async (shopname, index) => {
+
+  useEffect(() => {}, [usernames]);
+
+  const handleNameCheck = async (e, index) => {
     clearErrors(`newShopDetails[${index}].username`);
-    const nameCheck1 = shopname.toLowerCase();
-    const nameCheck = nameCheck1.trim();
+    const shopname = e.target.value.trim().toLowerCase();
+    if (shopname === "") return;
 
-    if (nameCheck === "") {
-      setUserNameCheck("");
-    } else {
-      const url1 = `https://merrybet.com/crp-api/rest/crp/api/sportsbook/merrybet/shop/verify/name/${nameCheck}`;
-      const url2 = `https://merrybet.com/crp-api/rest/crp/api/sportsbook/merrybet/customer/verify/login/${nameCheck}`;
+    const itemIndex = getItemIndex(usernames, index);
+    let obj = {
+      index,
+      inputedvalue: shopname,
+      availability: null,
+    };
+    try {
+      const url = `${config.Urls.base}/username/${shopname}`;
+      const response = await axios.get(url, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-      try {
-        const response1 = await fetch(`${url1}`);
-        const response2 = await fetch(`${url2}`);
-        const res1 = await response1.json();
-        const res2 = await response2.json();
-        if (res1.data === true || res2.data === true) {
-          setUserNameCheck("false");
+      if (response && response.data.statusCode === 200) {
+        if (response.data.data === "true") {
+          obj = {
+            index,
+            inputedvalue: shopname,
+            availability: false,
+          };
+          updateUsernameArr(obj, itemIndex);
           setError(`newShopDetails[${index}].username`, {
             type: "ExistingShop",
-            message: `${nameCheck}Existing Shop name. Provide another Shop name`,
+            message: `${shopname} Shop name already exist. Provide another Shop name`,
           });
           setTimeout(() => {
             setValue(`newShopDetails[${index}].username`, "");
-            `newShopDetails[${index}].username`.current.focus();
-          }, 3000);
-        } else {
-          setUserNameCheck("true");
+            setFocus(`newShopDetails[${index}].username`);
+          }, 1000);
         }
-      } catch (err) {
-        setUserNameCheck("false");
+        if (response.data.data === "false") {
+          obj = {
+            index,
+            inputedvalue: shopname,
+            availability: true,
+          };
+          updateUsernameArr(obj, itemIndex);
+        }
       }
+    } catch (err) {
+      obj = {
+        index,
+        inputedvalue: shopname,
+        availability: null,
+      };
+      updateUsernameArr(obj, itemIndex);
     }
   };
 
-  const checkAgentExist = (e) => {
-    setShopCheck("");
-    const shopname = e.target.value;
-    handleShopCheck(shopname);
+  const getItemIndex = (arr, item) => {
+    return arr.findIndex((e) => e.index === item);
   };
-  const checkUsernameExist = (e, index) => {
-    setUserNameCheck("");
-    const shopname = e.target.value;
-    handleNameCheck(shopname, index);
+
+  const updateUsernameArr = (obj, itemIndex) => {
+    if (itemIndex === -1) {
+      setUsernames([...usernames, obj]);
+      return;
+    }
+    const newArr = [...usernames];
+    newArr[itemIndex] = obj;
+    setUsernames(newArr);
   };
 
   const HandleBizState = ({ control }) => {
@@ -167,7 +204,7 @@ const BusinessInfo = ({
                   {errors.existingShopName?.message}
                 </span>
 
-                {shopCheck === "true" && (
+                {shopCheck && (
                   <span className=" text-[11px] text-[#0AB942]">
                     <IoMdCheckmarkCircleOutline
                       size={12}
@@ -192,7 +229,7 @@ const BusinessInfo = ({
                   {...register("existingShopName", {
                     required: "This  is required",
                   })}
-                  onBlur={checkAgentExist}
+                  onBlur={handleShopCheck}
                   // onBlur={booooo}
                 />
               </label>
@@ -207,7 +244,8 @@ const BusinessInfo = ({
                       <label className="block">
                         <span className="text-gray-700">New Shop Name</span>
 
-                        {userNameCheck === "true" && (
+                        {usernames.length > 0 &&
+                        usernames[index]?.availability ? (
                           <span className=" text-[11px] text-[#0AB942]">
                             <IoMdCheckmarkCircleOutline
                               size={12}
@@ -216,7 +254,7 @@ const BusinessInfo = ({
                             />{" "}
                             Available
                           </span>
-                        )}
+                        ) : null}
                         <input
                           type="text"
                           className="
@@ -233,7 +271,7 @@ const BusinessInfo = ({
                           {...register(`newShopDetails[${index}].username`, {
                             required: "Shop name is required.",
                           })}
-                          onBlur={(e) => checkUsernameExist(e, index)}
+                          onBlur={(e) => handleNameCheck(e, index)}
                         />
                       </label>
                     </div>

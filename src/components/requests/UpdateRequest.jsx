@@ -51,7 +51,6 @@ const UpdateRequest = () => {
       setData(requests);
       setTotalRows(total_rows);
       setTableData(handleTableListData(requests));
-    
     } else {
       setTableData([]);
       setTotalRows(0);
@@ -153,61 +152,61 @@ const UpdateRequest = () => {
 
   return (
     <Fragment>
-     
-        {" "}
-        <h1 className="text-2xl md:text-3xl font-bold text-[#344968]">
-          Pending Requests
-        </h1>
-        <section
-          className="flex flex-col justify-around w-full mx-auto pt-2 md:pt-5   text-gray-700    
+      {" "}
+      <h1 className="text-2xl md:text-3xl font-bold text-[#344968]">
+        Pending Requests
+      </h1>
+      <section
+        className="flex flex-col justify-around w-full mx-auto pt-2 md:pt-5   text-gray-700    
      "
-        >
-          <div className="flex  flex-col md:flex-row justify-start mt-8">
-            <button
-              className=" p-3 mx-2 text-[#ffffff] bg-[#FF7204] text-center hover:drop-shadow-xl"
-              type="button"
-              onClick={() => fetchRequestData(filter)}
-            >
-              <AiOutlineReload
-                size={25}
-                style={{ color: "#ffffff" }}
-                className="inline-flex mr-2"
-              />{" "}
-              Reload Page
-            </button>
+      >
+        <div className="flex  flex-col md:flex-row justify-start mt-8">
+          <button
+            className=" p-3 mx-2 text-[#ffffff] bg-[#FF7204] text-center hover:drop-shadow-xl"
+            type="button"
+            onClick={() => fetchRequestData(filter)}
+          >
+            <AiOutlineReload
+              size={25}
+              style={{ color: "#ffffff" }}
+              className="inline-flex mr-2"
+            />{" "}
+            Reload Page
+          </button>
+        </div>
+
+        {tabledata ? (
+          <div>
+            <DataTable
+              columns={columns}
+              tableList={tabledata}
+              keyField="reference"
+              progressPending={isLoading}
+              pagination
+              paginationServer
+              paginationTotalRows={totalRows}
+              onChangeRowsPerPage={onPageNumberingChange}
+              onChangePage={onPageChange}
+              customStyles={customStyles}
+              progressComponent={<Spinner />}
+            />{" "}
           </div>
+        ) : (
+          <div className="p-4 ">No Records Avalable</div>
+        )}
 
-          {tabledata && (
-            <div>
-              <DataTable
-                columns={columns}
-                tableList={tabledata}
-                keyField="reference"
-                progressPending={isLoading}
-                pagination
-                paginationServer
-                paginationTotalRows={totalRows}
-                onChangeRowsPerPage={onPageNumberingChange}
-                onChangePage={onPageChange}
-                customStyles={customStyles}
-                progressComponent={<Spinner />}
+        <div className="relative">
+          {showRequestModal && (
+            <ModalComponent>
+              <RequestDetails
+                selectedRow={selectedRow}
+                setShowModal={setShowRequestModal}
+                handleReloadPage={() => fetchRequestData(filter)}
               />
-
-              <div className="relative">
-                {showRequestModal && (
-                  <ModalComponent>
-                    <RequestDetails
-                      selectedRow={selectedRow}
-                      setShowModal={setShowRequestModal}
-                      handleReloadPage={() => fetchRequestData(filter)}
-                    />
-                  </ModalComponent>
-                )}
-              </div>
-            </div>
+            </ModalComponent>
           )}
-        </section>
-      
+        </div>
+      </section>
     </Fragment>
   );
 };

@@ -62,7 +62,6 @@ const ViewRequest = () => {
       setTableData([]);
       setTotalRows(0);
     }
-    return () => {};
   }, [requestState.requests]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -128,8 +127,6 @@ const ViewRequest = () => {
 
   useEffect(() => {
     fetchRequestData(filter);
-
-    return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
 
@@ -187,7 +184,7 @@ const ViewRequest = () => {
             </button>
           )}
           <button
-            className=" p-3 mx-2 w-[150px] text-[#ffffff] bg-[#FF7204] text-center hover:drop-shadow-xl"
+            className="my-2 md:my-0 p-3 md:mx-2 w-[150px] text-[#ffffff] bg-[#FF7204] text-center hover:drop-shadow-xl"
             type="button"
             onClick={() => fetchRequestData(filter)}
           >
@@ -199,7 +196,7 @@ const ViewRequest = () => {
             Reload Page
           </button>
         </div>
-        {tabledata && (
+        {tabledata ? (
           <div>
             <DataTable
               columns={columns}
@@ -213,20 +210,23 @@ const ViewRequest = () => {
               onChangePage={onPageChange}
               customStyles={customStyles}
               progressComponent={<Spinner />}
-            />
-
-            <div className="relative">
-              {showRequestModal && (
-                <ModalComponent>
-                  <RequestDetails
-                    selectedRow={selectedRow}
-                    setShowModal={setShowRequestModal}
-                  />
-                </ModalComponent>
-              )}
-            </div>
+            />{" "}
           </div>
+        ) : (
+          <div className="p-4 ">No Records Avalable</div>
         )}
+
+        <div className="relative">
+          {showRequestModal && (
+            <ModalComponent>
+              <RequestDetails
+                selectedRow={selectedRow}
+                setShowModal={setShowRequestModal}
+              />
+            </ModalComponent>
+          )}
+        </div>
+
         <div className="relative">
           {showAddModal && (
             <ModalComponent>

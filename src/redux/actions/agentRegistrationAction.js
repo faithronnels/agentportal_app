@@ -11,6 +11,7 @@ import {
   CLEAR_AGENTREG_SUCCESS,
   SET_AGENTREG_LOADING,
   CLEAR_AGENTREG_LOADING,
+ 
 } from "../actions/types.js";
 
 export const setNewRegistration = (formInput) => async (dispatch) => {
@@ -388,6 +389,7 @@ export const itAccountUpdate = (formInput) => async (dispatch) => {
     dispatch(setRegistrationError(err.response.data.messages[0]));
   }
 };
+
 
 export const setRegistrationLoading = () => ({
   type: SET_AGENTREG_LOADING,

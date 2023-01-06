@@ -140,7 +140,7 @@ const InitialFormVerification = () => {
       "Date of Birth": reg.dob,
       Email: reg.emailId,
       "Residential Address": reg.residenceAddress,
-      "Mobile Number": `'${reg.mobilenumber}`,
+      "Mobile Number": "" + reg.mobilenumber,
       "Origin LGA": reg.originLga,
       "Phone Number": `'${reg.phonenumber}`,
       "Residence LGA": reg.residenceLga,

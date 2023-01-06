@@ -33,12 +33,12 @@ const PersonalInfo = ({
     });
 
     if (originState) {
-      let selectedState = stateList.filter(
+      let selectedOriginState = stateList.filter(
         (state) => state.name === originState
       );
 
       // setlocalGovernments(selectedState[0].lgas);
-      return selectedState[0].lgas.map((lga, index) => (
+      return selectedOriginState[0].lgas.map((lga, index) => (
         <option key={index} value={lga}>
           {lga}
         </option>

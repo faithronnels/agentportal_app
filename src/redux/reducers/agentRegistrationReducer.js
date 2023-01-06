@@ -47,6 +47,7 @@ const agentRegistrationReducer = (state = initialState, action) => {
         errorMsg: payload,
         isLoading: false,
       };
+
     case CLEAR_AGENTREG_ERRORS:
       return { ...state, errorMsg: "" };
     case AGENTREG_SUCCESS:

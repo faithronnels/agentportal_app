@@ -1,12 +1,9 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 import CopyRightFooter from "../components/layout/footer/CopyRightFooter";
 import SideBar from "../components/layout/SideBar";
-import { useAuthState } from "../redux/selectors/index";
 
 const ProtectedLayout = () => {
-  const authState = useAuthState();
-  useEffect(() => {}, [authState]);
   return (
     <Fragment>
       <main className=" relative bg-fixed bg-contain bg-center  bg-no-repeat bg-origin-content h-[87vh] pt-10">
@@ -16,7 +13,7 @@ const ProtectedLayout = () => {
      "
         >
           <div className=" min-h-[300px] md:min-h-[370px] pt-12">
-            <Outlet context={authState} />
+            <Outlet />
           </div>
           <div className="mt-[9vh] md:mt-[32vh] ">
             {" "}

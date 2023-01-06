@@ -13,7 +13,6 @@ import AddUser from "./AddUser";
 import DeleteUser from "./DeleteUser";
 import UpdateUser from "./UpdateUser";
 
-
 const customStyles = {
   headCells: {
     style: {
@@ -174,7 +173,7 @@ const Users = () => {
           >
             <div className="flex  flex-col md:flex-row justify-start mt-8">
               <button
-                className=" py-3 w-[150px] text-[#ffffff] bg-[#FF7204]  hover:drop-shadow-xl"
+                className=" py-3 w-[150px] text-[#ffffff] bg-[#FF7204]  hover:drop-shadow-xl mb-1 md:mb-0"
                 type="button"
                 onClick={() => setShowAddModal(true)}
               >
@@ -186,7 +185,7 @@ const Users = () => {
                 />{" "}
               </button>
               <button
-                className=" p-3 mx-2 w-[150px] text-[#ffffff] bg-[#FF7204] text-center hover:drop-shadow-xl"
+                className=" p-3 md:mx-2 w-[150px] text-[#ffffff] bg-[#FF7204] text-center hover:drop-shadow-xl"
                 type="button"
                 onClick={() => dispatch(getAllUser())}
               >

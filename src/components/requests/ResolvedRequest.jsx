@@ -155,15 +155,14 @@ const ResolvedRequest = () => {
 
   return (
     <Fragment>
-   
-        <h1 className="text-2xl md:text-3xl font-bold text-[#344968]">
-          Resolved Requests
-        </h1>
-        <section
-          className="flex flex-col justify-around w-full mx-auto pt-2 md:pt-5   text-gray-700    
+      <h1 className="text-2xl md:text-3xl font-bold text-[#344968]">
+        Resolved Requests
+      </h1>
+      <section
+        className="flex flex-col justify-around w-full mx-auto pt-2 md:pt-5   text-gray-700    
      "
-        >
-          {/* <div className="flex flex-row justify-between mt-8">
+      >
+        {/* <div className="flex flex-row justify-between mt-8">
             <button
               className=" py-3 w-[150px] text-[#ffffff] bg-[#FF7204] "
               type="button"
@@ -177,37 +176,38 @@ const ResolvedRequest = () => {
               />{" "}
             </button>
           </div> */}
-          {tabledata && (
-            <div>
-              <DataTable
-                columns={columns}
-                tableList={tabledata}
-                keyField="reference"
-                progressPending={isLoading}
-                pagination
-                paginationServer
-                paginationTotalRows={totalRows}
-                onChangeRowsPerPage={onPageNumberingChange}
-                onChangePage={onPageChange}
-                customStyles={customStyles}
-                progressComponent={<Spinner />}
-              />
+        {tabledata ? (
+          <div>
+            <DataTable
+              columns={columns}
+              tableList={tabledata}
+              keyField="reference"
+              progressPending={isLoading}
+              pagination
+              paginationServer
+              paginationTotalRows={totalRows}
+              onChangeRowsPerPage={onPageNumberingChange}
+              onChangePage={onPageChange}
+              customStyles={customStyles}
+              progressComponent={<Spinner />}
+            />{" "}
+          </div>
+        ) : (
+          <div className="p-4 ">No Records Avalable</div>
+        )}
 
-              <div className="relative">
-                {showRequestModal && (
-                  <ModalComponent>
-                    <RequestDetails
-                      selectedRow={selectedRow}
-                      currentUser={currentUser}
-                      setShowModal={setShowRequestModal}
-                    />
-                  </ModalComponent>
-                )}
-              </div>
-            </div>
+        <div className="relative">
+          {showRequestModal && (
+            <ModalComponent>
+              <RequestDetails
+                selectedRow={selectedRow}
+                currentUser={currentUser}
+                setShowModal={setShowRequestModal}
+              />
+            </ModalComponent>
           )}
-        </section>
-     
+        </div>
+      </section>
     </Fragment>
   );
 };

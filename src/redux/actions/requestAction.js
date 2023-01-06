@@ -112,8 +112,8 @@ export const setNewRequest = (formInput) => async (dispatch) => {
       }
     }
   } catch (err) {
-    dispatch(clearRequestLoading());
     dispatch(setRequestError(err.response.data.messages[0]));
+    dispatch(clearRequestLoading());
   }
 };
 

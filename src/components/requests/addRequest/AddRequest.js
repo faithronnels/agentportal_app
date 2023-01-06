@@ -85,17 +85,17 @@ export const AddRequest = ({ handleCloseModal, handleReload }) => {
     if (errorMsg) {
       setTimeout(() => {
         dispatch(clearRequestError());
-      }, 5000);
+      }, 3000);
     }
     if (successMsg) {
       handleReload();
       setTimeout(() => {
         dispatch(clearRequestSuccessMsg());
-
         handleCloseModal();
-      }, 5000);
+      }, 3000);
     }
   }, [errorMsg, successMsg, dispatch, handleCloseModal, handleReload]);
+ 
 
   return (
     <div className=" bg-[#fbfbfb] pb-8">

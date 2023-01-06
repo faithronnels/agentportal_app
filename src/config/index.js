@@ -1,5 +1,5 @@
 import defaultConfig from "./defaultConfig.json";
-
+//   "base": "http://localhost/agentportal-api-dev",
 const config = {};
 // "base": "https://merrybetgold.com/api",
 //http://localhost/pa_request_v1

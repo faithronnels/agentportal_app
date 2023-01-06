@@ -7,16 +7,15 @@
     "phoneDefaultCountry": "NG"
   },
   "Urls": {
-    "base": "http://localhost/agentportal-api",
-    "tradefadaDevelopment": "http://localhost/agentportal-api",
-    "tradefadaProduction": "http://localhost/agentportal-api"
+    "base": "https://mb-agent-portal-api.azurewebsites.net",
+    "tradefadaDevelopment": "https://mb-agent-portal-api.azurewebsites.net",
+    "tradefadaProduction": "https://mb-agent-portal-api.azurewebsites.net"
   },
   "Routes": {
     "request": "/request",
     "profile": "/profile"
   },
 
-  
   "ToastType": {
     "Error": 0,
     "Success": 1,

@@ -350,7 +350,7 @@ export const csuAdminDepartmentMenu = [
       {
         id: 1,
         value: "Pending Request",
-        link: "update",
+        link: "/requests/update",
         subMenu: false,
         icons: <RiMailSettingsFill size={15} className="mr-1 mt-1" />,
       },
