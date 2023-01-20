@@ -7,9 +7,9 @@
     "phoneDefaultCountry": "NG"
   },
   "Urls": {
-    "base": "https://mb-agent-portal-api.azurewebsites.net",
-    "tradefadaDevelopment": "https://mb-agent-portal-api.azurewebsites.net",
-    "tradefadaProduction": "https://mb-agent-portal-api.azurewebsites.net"
+    "base": "https://merrybetgold.com/mb-agent-portal-api",
+    "tradefadaDevelopment": "https://merrybetgold.com/mb-agent-portal-api",
+    "tradefadaProduction": "https://merrybetgold.com/mb-agent-portal-api"
   },
   "Routes": {
     "request": "/request",

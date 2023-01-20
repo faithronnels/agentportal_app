@@ -20,6 +20,7 @@ export const mainMenu = [
     subMenuData: [
       { id: 1, value: "Agent Downloads", link: "/", subMenu: false },
       { id: 2, value: "Terms & Conditions", link: "/", subMenu: false },
+      { id: 3, value: "Monthly Bonus", link: "bonus", subMenu: false },
     ],
   },
   { id: 4, value: "Register", link: "signup", subMenu: false },

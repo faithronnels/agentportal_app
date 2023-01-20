@@ -9,6 +9,7 @@ import {
 import store from "./redux/store";
 import { useAuthState } from "./redux/selectors";
 import Commission from "./pages/CommissionPage";
+import Bonus from "./pages/BonusPage";
 import Home from "./pages/HomePage";
 import Register from "./pages/RegisterPage";
 import ForgotPassword from "./pages/ForgotPasswordPage";
@@ -54,6 +55,7 @@ function App() {
             <Route exact path="signup" element={<Register />} />
             <Route exact path="signin" element={<SignIn />} />
             <Route exact path="forgot-pass" element={<ForgotPassword />} />
+            <Route exact path="bonus" element={<Bonus />} />
           </Route>
           {/* <Route path="*" element={<NotAllowed />} /> */}
           <Route element={<ProtectedLayout />}>
