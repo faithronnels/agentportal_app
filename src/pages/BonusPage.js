@@ -12,9 +12,9 @@ const BonusPage = () => {
             </h1>
             <div>
               <p className="md:text-xl my-2">
-                The monthly bonus will be a way of rewarding account that had
-                good activity and profits in the month. It will be calculated
-                by:
+                The monthly bonus will be a way of rewarding agent accounts that
+                had good activity and profits in the month. It will be
+                calculated by:
               </p>
               <p className="md:text-xl my-5 mx-4">
                 Monthly bonus = (30% * Profit of the month) - (Total weekly
