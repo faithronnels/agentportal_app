@@ -15,18 +15,15 @@ import Spinner from "../commons/Spinner";
 const ForgotPassword = () => {
   const dispatch = useDispatch();
   const authState = useAuthState();
-   const {
-     register,
-     handleSubmit,
-     formState: { errors },
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
   } = useForm();
-  
+
   const { successMsg, errorMsg, isLoading } = authState;
 
- 
-
   useEffect(() => {}, [authState]);
- 
 
   const onSubmit = async (data) => {
     dispatch(forgotPassword(data));
@@ -43,6 +40,7 @@ const ForgotPassword = () => {
       }, 5000);
     }
   }, [dispatch, errorMsg, successMsg]);
+  console.log("errorMsg", errorMsg);
   return (
     <section
       className="flex flex-row justify-around  mx-auto pt-2 md:pt-5  max-h-full  bg-gradient-to-tl from-[#fffffffa] to-[#f5f2f2f3]   

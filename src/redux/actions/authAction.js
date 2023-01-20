@@ -226,11 +226,15 @@ export const forgotPassword = (formInput) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     });
-   
+  
     if (res.data.statusCode === 200) {
       dispatch(setAuthSuccess(res.data.messages[0]));
+    } else {
+      dispatch(setAuthError(res.data.messages[0]));
+      dispatch(clearAuthLoading());
     }
   } catch (err) {
+   
     dispatch(clearAuthLoading());
     dispatch(clearIsAuthenticated());
     dispatch(

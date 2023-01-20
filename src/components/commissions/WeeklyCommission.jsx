@@ -20,7 +20,7 @@ const customStyles = {
   rdt_TableFooter: {},
 };
 
-const BiWeeklyCommission = () => {
+const WeeklyCommission = () => {
   const columns = [
     {
       fontSize: "1rem",
@@ -50,4 +50,4 @@ const BiWeeklyCommission = () => {
   );
 };
 
-export default BiWeeklyCommission;
+export default WeeklyCommission;

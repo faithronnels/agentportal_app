@@ -1,8 +1,7 @@
 import React, { Fragment } from "react";
-import BiWeeklyCommission from "../components/commissions/BiWeeklyCommission";
+import WeeklyCommission from "../components/commissions/WeeklyCommission";
 import VirtualCommissionTable from "../components/commissions/VirtualCommissionTable";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-
 
 const CommissionPage = () => {
   return (
@@ -20,11 +19,11 @@ const CommissionPage = () => {
           </div>
           <div className="">
             <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-center md:text-left">
-              Bi-weekly per ticket commission
+              Weekly per ticket commission
             </h1>
             <div>
               {" "}
-              <BiWeeklyCommission />
+              <WeeklyCommission />
             </div>
           </div>
         </section>
@@ -58,84 +57,49 @@ const CommissionPage = () => {
             </div>
             <div className="pt-2 md:pt-4 ">
               <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-center ">
-                Merrybet Bi-Weekly Bonus
+                Merrybet Monthly Bonus
               </h2>
-              <p className="md:text-xl my-2">
-                This bonus is paid once every two weeks (twice a month) on
-                Tuesday. Agent will get 30% of total difference for the two
-                weeks minus weekly commission paid to agent for both weeks.
-              </p>
-              <h3 className="text-xl md:text-2xl font-bold text-center md:text-left">
-                Bi-weekly bonus calculation
-              </h3>
-
-              <p className="md:text-xl my-2">
-                Total stake for two weeks – total winnings for two weeks =
-                difference
-              </p>
-              <p className="md:text-xl my-2">
-                (Difference X 30%) – (total weekly per ticket commission for two
-                weeks) = Agent Bonus
-              </p>
-              <h3 className="text-xl md:text-2xl font-bold text-center md:text-left">
-                Example
-              </h3>
-
-              <p className="md:text-xl my-2">
-                Total stake for two weeks = N600,000
-              </p>
-              <p className="md:text-xl my-2">
-                Total winnings for two weeks = N250,000
-              </p>
-              <p className="md:text-xl my-2">
-                Total weekly per ticket commission for two weeks = N35,000 (week
-                one) + N42,000 (week two) = N77,000
-              </p>
-              <p className="md:text-xl my-2">Calculation will be:</p>
-              <p className="md:text-xl my-2">N600,000 – N250,000 = N350,000</p>
-              <p className="md:text-xl my-2">(N350,000 X 30%) – (N77,000)</p>
-              <p className="md:text-xl my-2">(N105,000) – (N77,000)</p>
-              <p className="md:text-xl my-2">Agent bi-weekly bonus = N28,000</p>
-            </div>
-            <div className="pt-2 md:pt-4">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-center ">
-                Merrybet Bi-Weekly Bonus
-              </h2>
-              <p className="md:text-xl my-2">
-                {" "}
-                <IoMdCheckmarkCircleOutline
-                  size={15}
-                  style={{ color: "#FF7204" }}
-                  className="inline-flex mx-2"
-                />
-                To be eligible for bi-weekly bonus, agent must play all Merrybet
-                products only
-              </p>
-              <p className="md:text-xl my-2">
-                {" "}
-                <IoMdCheckmarkCircleOutline
-                  size={15}
-                  style={{ color: "#FF7204" }}
-                  className="inline-flex mx-2"
-                />
-                Agent must work a minimum of 12 of the 14 days and must place a
-                certain number of bets each day
-              </p>
-              <p className="md:text-xl my-2">
-                {" "}
-                <IoMdCheckmarkCircleOutline
-                  size={15}
-                  style={{ color: "#FF7204" }}
-                  className="inline-flex mx-2"
-                />
-                Agents who do not meet up to the criteria above would get a
-                lower bi-weekly bonus or would not even be paid
-              </p>
+              <div>
+                <p className="md:text-xl my-2">
+                  The monthly bonus will be a way of rewarding agent accounts
+                  that had good activity and profits in the month. It will be
+                  calculated by:
+                </p>
+                <p className="md:text-xl my-5 mx-4">
+                  Monthly bonus = (30% * Profit of the month) - (Total weekly
+                  commission paid in the month)
+                </p>
+                <p className="md:text-xl my-2">
+                  Accounts that will recieve this bonus must meet the following
+                  condition:
+                </p>
+                <p className="md:text-xl my-2">
+                  {" "}
+                  <IoMdCheckmarkCircleOutline
+                    size={15}
+                    style={{ color: "#FF7204" }}
+                    className="inline-flex mx-2"
+                  />
+                  <span style={{ fontSize: "bold" }}>a.</span> The account must
+                  play at least 5 out of 7 days. It must play on Saturday and
+                  Sunday then at least 3 other days.
+                </p>
+                <p className="md:text-xl my-2">
+                  {" "}
+                  <IoMdCheckmarkCircleOutline
+                    size={15}
+                    style={{ color: "#FF7204" }}
+                    className="inline-flex mx-2"
+                  />
+                  <span style={{ fontSize: "bold" }}>b.</span> The account must
+                  have a total of at least 150 bet counts in each of the weeks
+                  in that month.
+                </p>
+              </div>
             </div>
           </div>
         </section>
       </main>
-  
     </Fragment>
   );
 };
